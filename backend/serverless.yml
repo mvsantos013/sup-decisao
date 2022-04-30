@@ -1,0 +1,19 @@
+service: backend-sup-decisao-lista-1
+
+frameworkVersion: '3'
+
+plugins:
+  - serverless-python-requirements
+  
+provider:
+  name: aws
+  runtime: python3.8
+  region: us-east-1
+
+functions:
+  maximax:
+    handler: handler.maximax
+    events:
+     - http:
+        path: /maximax
+        method: post
