@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h2>Lista 01</h2>
+    <h1>Tomada de decisão</h1>
     <hr>
     <DecisionTable tableName="Lucro" :table="tableLucro" />
     <DecisionTable tableName="Investimento" :table="tableInvestimento" />
@@ -33,3 +33,24 @@ export default {
   },
 }
 </script>
+
+<style>
+h1 { 
+  color: #606060; 
+  font-family: 'Trocchi', serif; 
+  font-size: 32px; 
+  font-weight: normal; 
+  line-height: 48px;
+  margin: 0; 
+}
+
+h3 { 
+  color: #606060; 
+  font-family: 'Trocchi', serif; 
+  font-size: 20px; 
+  font-weight: normal; 
+  line-height: 48px;
+  margin: 0; 
+}
+
+</style>

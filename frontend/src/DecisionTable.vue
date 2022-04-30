@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="margin-bottom: 10px">
         <h3>{{tableName}}</h3>
 
         <div style="display: flex;">
@@ -13,13 +13,17 @@
                 </table>
             </div>
             <div style="display: flex; flex-direction: column; padding-left: 10px">
-                <button>Dominância</button>
+                <button @click="computeDominancia">Dominância</button>
                 <button @click="computeMaximax">Maximax</button>
-                <button>Maxmin</button>
-                <button>Minimax Regret</button>
-                <button>Média</button>
+                <button @click="computeMaximin">Maxmin</button>
+                <button @click="computeMinimaxRegret">Minimax Regret</button>
+                <button @click="computeMedia">Média</button>
             </div>
-            <div v-if="result" style="padding-left: 20px">Resultado: {{result}}</div>
+            <div style="padding-left: 20px">
+                <div v-if="loading">Calculando...</div>
+                <div v-if="result">Resultado: {{result}}</div>
+                <div v-if="error">{{error}}</div>
+            </div>
         </div>
     </div>
 </template>
@@ -27,8 +31,8 @@
 <script>
 import axios from 'axios'
 
-const API_PATH = 'https://zf5sqqpile.execute-api.us-east-1.amazonaws.com/dev'
-// const API_PATH = 'http://localhost:3000/dev'
+// const API_PATH = 'https://zf5sqqpile.execute-api.us-east-1.amazonaws.com/dev'
+const API_PATH = 'http://localhost:3000/dev'
 
 export default {
   name: 'App',
@@ -44,30 +48,81 @@ export default {
   },
   data() {
     return {
-        result: null
+        result: null,
+        error: null,
+        loading: false,
     }
   },
   methods: {
       async computeDominancia(){
-          const response = await axios.post(`${API_PATH}/dominancia`)
-          console.log(response)
+        this.result = null
+        this.error = null
+        this.loading = true
+        try{
+            const response = await axios.post(`${API_PATH}/dominancia`, {table: this.table})
+            this.result = response.data.result
+            if(!this.result) this.result = 'Não há resultado.'
+        }
+        catch(e){
+            this.error = 'Error: ' + e.response.data.error
+        }
+        this.loading = false
       },
       async computeMaximax(){
-          const response = await axios.post(`${API_PATH}/maximax`, {table: this.table})
-          console.log(response)
-          this.result = response.data.result
+        this.result = null
+        this.error = null
+        this.loading = true
+        try{
+            const response = await axios.post(`${API_PATH}/maximax`, {table: this.table})
+            this.result = response.data.result
+            if(!this.result) this.result = 'Não há resultado.'
+        }
+        catch(e){
+            this.error = 'Error: ' + e.response.data.error
+        }
+        this.loading = false
       },
       async computeMaximin(){
-          const response = await axios.post(`${API_PATH}/maximin`)
-          console.log(response)
+        this.result = null
+        this.error = null
+        this.loading = true
+        try{
+            const response = await axios.post(`${API_PATH}/maximin`, {table: this.table})
+            this.result = response.data.result
+            if(!this.result) this.result = 'Não há resultado.'
+        }
+        catch(e){
+            this.error = 'Error: ' + e.response.data.error
+        }
+        this.loading = false
       },
       async computeMinimaxRegret(){
-          const response = await axios.post(`${API_PATH}/minimax-regret`)
-          console.log(response)
+        this.result = null
+        this.error = null
+        this.loading = true
+        try{
+            const response = await axios.post(`${API_PATH}/minimax-regret`, {table: this.table})
+            this.result = response.data.result
+            if(!this.result) this.result = 'Não há resultado.'
+        }
+        catch(e){
+            this.error = 'Error: ' + e.response.data.error
+        }
+        this.loading = false
       },
       async computeMedia(){
-          const response = await axios.post(`${API_PATH}/media`)
-          console.log(response)
+        this.result = null
+        this.error = null
+        this.loading = true
+        try{
+            const response = await axios.post(`${API_PATH}/media`, {table: this.table})
+            this.result = response.data.result
+            if(!this.result) this.result = 'Não há resultado.'
+        }
+        catch(e){
+            this.error = 'Error: ' + e.response.data.error
+        }
+        this.loading = false
       }
   }
 }

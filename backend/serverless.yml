@@ -12,10 +12,38 @@ provider:
   region: us-east-1
 
 functions:
+  dominancia:
+    handler: handler.dominancia
+    events:
+     - http:
+        path: /dominancia
+        method: post
+        cors: true
   maximax:
     handler: handler.maximax
     events:
      - http:
         path: /maximax
+        method: post
+        cors: true
+  maximin:
+    handler: handler.maximin
+    events:
+     - http:
+        path: /maximin
+        method: post
+        cors: true
+  minimax_regret:
+    handler: handler.minimax_regret
+    events:
+     - http:
+        path: /minimax-regret
+        method: post
+        cors: true
+  media:
+    handler: handler.media
+    events:
+     - http:
+        path: /media
         method: post
         cors: true
