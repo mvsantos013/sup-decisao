@@ -28,6 +28,7 @@
 import axios from 'axios'
 
 const API_PATH = 'https://zf5sqqpile.execute-api.us-east-1.amazonaws.com/dev'
+// const API_PATH = 'http://localhost:3000/dev'
 
 export default {
   name: 'App',
@@ -52,8 +53,9 @@ export default {
           console.log(response)
       },
       async computeMaximax(){
-          const response = await axios.post(`${API_PATH}/maximax`, {teste: this.table})
+          const response = await axios.post(`${API_PATH}/maximax`, {table: this.table})
           console.log(response)
+          this.result = response.data.result
       },
       async computeMaximin(){
           const response = await axios.post(`${API_PATH}/maximin`)

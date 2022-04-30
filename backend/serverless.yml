@@ -4,6 +4,7 @@ frameworkVersion: '3'
 
 plugins:
   - serverless-python-requirements
+  - serverless-offline
   
 provider:
   name: aws
@@ -17,3 +18,4 @@ functions:
      - http:
         path: /maximax
         method: post
+        cors: true

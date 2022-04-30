@@ -8,7 +8,7 @@ npm install
 npm install -g serverless
 ```
 
-## Run function locally
+## Run API locally
 ```
-sls invoke local -f <function_name>
+serverless offline
 ```

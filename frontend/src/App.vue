@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <h2>Lista 01</h2>
+    <hr>
     <DecisionTable tableName="Lucro" :table="tableLucro" />
     <DecisionTable tableName="Investimento" :table="tableInvestimento" />
   </div>
