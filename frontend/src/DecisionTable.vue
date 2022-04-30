@@ -31,8 +31,8 @@
 <script>
 import axios from 'axios'
 
-// const API_PATH = 'https://zf5sqqpile.execute-api.us-east-1.amazonaws.com/dev'
-const API_PATH = 'http://localhost:3000/dev'
+const API_PATH = 'https://zf5sqqpile.execute-api.us-east-1.amazonaws.com/dev'
+// const API_PATH = 'http://localhost:3000/dev'
 
 export default {
   name: 'App',
