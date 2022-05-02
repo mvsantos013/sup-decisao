@@ -37,6 +37,7 @@ def maximin(event, context):
     except Exception as e:
         return response(500, { "error": str(e) })
 
+
 def minimax_regret(event, context):
     try:
         df = read_table(event)
@@ -65,6 +66,8 @@ def media(event, context):
 def read_table(event):
     df = pd.DataFrame(json.loads(event['body'])['table'])
     df = df.set_index(df.columns[0])
+    df.rename(columns=df.iloc[0], inplace = True)
+    df = df.iloc[1: , :]
     return df
 
 def response(status_code, data):
@@ -76,3 +79,5 @@ def response(status_code, data):
             "Access-Control-Allow-Credentials": True,
         },
     }
+
+maximax({"body": '{"table":[["Publicar/Vendas",1000,1200,1400],[1000,3500,3100,3700],[1200,2800,4500,2900],[1400,2600,3800,4950]]}'}, None)
